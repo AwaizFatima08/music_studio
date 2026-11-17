@@ -130,7 +130,8 @@ class HomeScreen extends StatelessWidget {
               Expanded(
                 child: LayoutBuilder(
                   builder: (context, c) {
-                    final cols = c.maxWidth > 900 ? 5 : (c.maxWidth > 600 ? 4 : 3);
+                    // Landscape: 5 x 2 so all nine rooms fit without scrolling; portrait: 3 x 3.
+                    final cols = c.maxWidth > c.maxHeight ? 5 : 3;
                     final rows = (rooms.length / cols).ceil();
                     final tileW = (c.maxWidth - 24 - (cols - 1) * 14) / cols;
                     final fitH = (c.maxHeight - 24 - (rows - 1) * 14) / rows;

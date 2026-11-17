@@ -4,10 +4,10 @@ AdMob account: **homilabs.smc@gmail.com** (publisher `pub-2087846699268567`), sa
 
 | What | ID |
 |---|---|
-| App (Android) "Tiny Tunes Studio" | not created yet |
-| Banner `tinytunes_grownups_banner` | not created yet |
+| App (Android) "Tiny Tunes Studio" | `ca-app-pub-2087846699268567~6782017763` |
+| Banner `tinytunes_grownups_banner` | `ca-app-pub-2087846699268567/5476674951` |
 
-Until they exist every build uses Google's test ids. When created, put them in `.secrets/ad-units.env` (copy
+Created 17 Nov 2026. Debug builds use Google's test ids; the real ids are in `.secrets/ad-units.env` (copy
 `.secrets/ad-units.env.example`); only `scripts/build_release.sh` passes them in, and it refuses test ids.
 
 Test devices (labelled test

@@ -27,13 +27,23 @@ launcher name "Tiny Tunes"). Started 17 Nov 2026 by Homi. See README.md for feat
 python3 tools/make_sounds.py                 # regenerate sounds + backing tracks (~2 min)
 flutter analyze && flutter test
 jobq run --name tinytunes-debug-apk -- bash -c 'flutter build apk --debug && cd android && ./gradlew --stop'
-bash scripts/build_release.sh                # real ads; needs .secrets/ad-units.env + upload key (not made yet)
+bash scripts/build_release.sh                # real ads; needs .secrets/ad-units.env + upload key 
 bash scripts/backup.sh                       # commit first
 ```
 Emulator: AVD `tinytunes_api35` in `/mnt/storage/projects/android-avd` (create when needed), always through `jobq`.
 
 ## Status (17 Nov 2026)
-- v1.0.0+1 code complete with placeholder (emoji) art: 9 rooms (piano, xylophone, guitar, drums, flute, silly
-  sounds, beat maker, play-a-song, karaoke), grown-ups screen, parent gate. 17 tests pass. Not yet run on a phone.
-- Open: Z-Image art (prompts proposed to Homi), AdMob app + banner unit, upload key, launcher icon, store listing,
-  website upload, device test of mic latency (`kMicLatencySeconds` in karaoke_screen.dart).
+- v1.0.0+1: 9 rooms, approved Z-Image art (12 jobs, `assets/ASSET-REGISTER.md`; app art made by `tools/prep_art.py`,
+  launcher = smiling-note cutout on purple, Homi's choice), 17 tests pass. Emulator-tested (home, karaoke record +
+  chipmunk playback, beat maker); the CPU emulator's System UI ANRs are the emulator, not the app.
+- AdMob (homilabs.smc): app `ca-app-pub-2087846699268567~6782017763`, banner `.../5476674951` (`docs/admob.md`).
+- Upload key `.secrets/tinytunes-upload.jks` (alias upload; password in `.secrets/tinytunes-upload-keystore-credentials.txt`;
+  SHA-256 pinned in `scripts/build_release.sh`). **Losing it blocks Play updates**; local backup copies `.secrets/`.
+- Website live 17 Nov: card + privacy#tinytunes + terms#tinytunes (`web/add_tinytunes.py`, server backups
+  `*.bak-2026-11-17-tinytunes`).
+- Play Console (Homilabs org account 9161588402757830740): app "Tiny Tunes Studio: Kids Music", app id
+  4974786490227230640, created 17 Nov. App content done (ads yes, no sign-in, content rating Everyone/All ages,
+  target 5 and under + 6-8 = Designed for Families, Teacher Approved requested, no AD_ID, Data safety = AdMob data
+  only). Category Music & Audio, contact homilabs.smc@gmail.com. Listing text + icon + feature graphic in
+  `docs/store-listing.md` / `store/` (`tools/make_store_assets.py`).
+- Mic latency on real phones still to tune (`kMicLatencySeconds` in karaoke_screen.dart).

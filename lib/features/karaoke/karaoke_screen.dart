@@ -220,34 +220,38 @@ class KaraokeScreenState extends State<KaraokeScreen> with TickerProviderStateMi
         return _centre([
           Text('Listen to you!', style: kidLabel.copyWith(fontSize: 30)),
           const SizedBox(height: 14),
-          Wrap(
-            spacing: 14,
-            runSpacing: 14,
-            alignment: WrapAlignment.center,
+          // One row that always fits: phones in landscape are short, so the cards must not wrap.
+          Row(
+            mainAxisAlignment: MainAxisAlignment.center,
             children: [
               for (final v in KaraokeVoice.values)
-                Bouncy(
-                  key: Key('voice-${v.name}'),
-                  semanticLabel: v.title,
-                  onTap: phase == KaraokePhase.rendering ? null : () => listen(v),
-                  child: Container(
-                    width: 130,
-                    height: 120,
-                    decoration: candy(Color(v.color), lit: v == _voice),
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        if (phase == KaraokePhase.rendering && v == _voice)
-                          const SizedBox(
-                            width: 44,
-                            height: 44,
-                            child: CircularProgressIndicator(color: Colors.white, strokeWidth: 5),
-                          )
-                        else
-                          Text(v.emoji, style: const TextStyle(fontSize: 44)),
-                        const SizedBox(height: 6),
-                        FittedBox(child: Text(v.title, style: kidLabel.copyWith(fontSize: 18))),
-                      ],
+                Flexible(
+                  child: Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 7),
+                    child: Bouncy(
+                      key: Key('voice-${v.name}'),
+                      semanticLabel: v.title,
+                      onTap: phase == KaraokePhase.rendering ? null : () => listen(v),
+                      child: Container(
+                        constraints: const BoxConstraints(maxWidth: 140),
+                        height: 112,
+                        decoration: candy(Color(v.color), lit: v == _voice),
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            if (phase == KaraokePhase.rendering && v == _voice)
+                              const SizedBox(
+                                width: 44,
+                                height: 44,
+                                child: CircularProgressIndicator(color: Colors.white, strokeWidth: 5),
+                              )
+                            else
+                              Text(v.emoji, style: const TextStyle(fontSize: 44)),
+                            const SizedBox(height: 6),
+                            FittedBox(child: Text(v.title, style: kidLabel.copyWith(fontSize: 18))),
+                          ],
+                        ),
+                      ),
                     ),
                   ),
                 ),
@@ -269,8 +273,10 @@ class KaraokeScreenState extends State<KaraokeScreen> with TickerProviderStateMi
       children: [
         Expanded(
           child: Center(
-            child: Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 20),
+            child: Container(
+              margin: const EdgeInsets.symmetric(horizontal: 20),
+              padding: const EdgeInsets.fromLTRB(24, 4, 24, 14),
+              decoration: BoxDecoration(color: const Color(0x99200A40), borderRadius: BorderRadius.circular(28)),
               child: Column(
                 mainAxisSize: MainAxisSize.min,
                 children: [

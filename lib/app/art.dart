@@ -1,14 +1,14 @@
-/// Approved homidev (Z-Image) art. Every entry is null until Homi approves the
-/// image and it is integrated into assets/images/ (see assets/ASSET-REGISTER.md);
-/// until then the screens draw emoji and gradients instead.
+/// Approved homidev (Z-Image) art, prepared by tools/prep_art.py from the files in
+/// assets/images and assets/icons (see assets/ASSET-REGISTER.md). Approved by Homi
+/// on 17 Nov 2026. The emoji stay as fallbacks for any room without art.
 class Art {
   const Art._();
 
-  static const String? homeBackground = null;
-  static const String? stageBackground = null;
+  static const String homeBackground = 'assets/art/bg_home.webp';
+  static const String stageBackground = 'assets/art/bg_stage.webp';
 
-  static const Map<String, String> _rooms = {};
+  static const _rooms = {'piano', 'xylophone', 'guitar', 'drums', 'flute', 'silly', 'beats', 'songs', 'karaoke'};
 
   /// Cut-out icon for a home-screen room, or null for the emoji.
-  static String? room(String id) => _rooms[id];
+  static String? room(String id) => _rooms.contains(id) ? 'assets/art/room_$id.webp' : null;
 }

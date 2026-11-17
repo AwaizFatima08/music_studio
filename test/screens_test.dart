@@ -147,4 +147,39 @@ void main() {
     expect(find.byKey(const Key('sing')), findsOneWidget); // back to the start, nothing to listen to
     await t.pumpWidget(const SizedBox());
   });
+
+  testWidgets('on a phone in landscape all five voices and Sing again fit', (t) async {
+    phoneLandscape(t);
+    final s = makeServices();
+    final song = testSongs.firstWhere((x) => x.id == 'buns');
+    await t.pumpWidget(app(KaraokeScreen(services: s.services, song: song, render: (_, _, _) async => Uint8List(8))));
+    await t.tap(find.byKey(const Key('sing')));
+    await t.pump();
+    await t.pump(const Duration(milliseconds: 50));
+    s.sound.tracks.single.position = 999;
+    await settle(t);
+    expect(t.takeException(), isNull);
+    final screen = t.view.physicalSize / t.view.devicePixelRatio;
+    for (final key in ['voice-robot', 'voice-star', 'sing-again']) {
+      final r = t.getRect(find.byKey(Key(key)));
+      expect(r.bottom <= screen.height && r.right <= screen.width, isTrue, reason: '$key at $r');
+    }
+    await t.pumpWidget(const SizedBox());
+  });
+
+  testWidgets('every room fits a phone in landscape', (t) async {
+    phoneLandscape(t);
+    await t.pumpWidget(app(HomeScreen(services: makeServices().services)));
+    final screen = t.view.physicalSize / t.view.devicePixelRatio;
+    for (final r in rooms) {
+      expect(t.getRect(find.byKey(Key('room-${r.id}'))).bottom <= screen.height, isTrue, reason: r.id);
+    }
+  });
+}
+
+void phoneLandscape(WidgetTester t) {
+  // Oppo CPH2743: 2372 x 1080 px at 2.625 = about 904 x 411 dp, the tightest screen we ship to.
+  t.view.physicalSize = const Size(2372, 1080);
+  t.view.devicePixelRatio = 2.625;
+  addTearDown(t.view.reset);
 }

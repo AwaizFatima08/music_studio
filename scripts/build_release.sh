@@ -44,7 +44,7 @@ done
 if grep -q "com.google.android.gms.permission.AD_ID" <<<"$MANIFEST"; then echo "FAIL: AD_ID permission is in the manifest"; exit 1; fi
 # Must be signed with the upload key (.secrets/tinytunes-upload.jks), never the debug key.
 # UPLOAD_CERT_SHA256 is pinned once the upload key exists (first release build).
-UPLOAD_CERT_SHA256="${UPLOAD_CERT_SHA256:-}"
+UPLOAD_CERT_SHA256="7520ee6a81e3344c51140ed3661d17d29c29024d0e77dc71048f280ecb0cb247"
 [ -n "$UPLOAD_CERT_SHA256" ] || { echo "FAIL: pin UPLOAD_CERT_SHA256 in this script first"; exit 1; }
 APKSIGNER="$(ls -d "$HOME"/Android/Sdk/build-tools/*/ | tail -1)apksigner"
 CERT="$("$APKSIGNER" verify --print-certs "$OUT/tinytunes-${VERSION/+/-}.apk" | grep -i 'SHA-256 digest')"

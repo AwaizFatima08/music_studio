@@ -30,9 +30,20 @@ flutter:
     - assets/backing/
     - assets/songs/
     - assets/brand/
+    - assets/art/
+    # Approved homidev originals, declared so release-check.sh can match the register.
+    - assets/images/
+    - assets/icons/
   fonts:
     - family: Quicksand
       fonts:
         - asset: assets/fonts/Quicksand-Regular.ttf
         - asset: assets/fonts/Quicksand-Bold.ttf
           weight: 700
+
+flutter_launcher_icons:
+  android: true
+  ios: false
+  image_path: assets/icon/icon.png
+  adaptive_icon_background: "#7C4DFF"
+  adaptive_icon_foreground: assets/icon/icon_foreground.png
