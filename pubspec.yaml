@@ -1,0 +1,38 @@
+name: tiny_tunes
+description: "Tiny Tunes Studio: a music studio for small children (HomiLabs)."
+publish_to: 'none'
+
+version: 1.0.0+1
+
+environment:
+  sdk: ^3.11.5
+
+dependencies:
+  flutter:
+    sdk: flutter
+  flutter_soloud: ^4.1.7
+  google_mobile_ads: ^9.2.0
+  record: ^6.2.1
+  shared_preferences: ^2.5.6
+  url_launcher: ^6.3.3
+  wakelock_plus: ^1.7.0
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^6.0.0
+  flutter_launcher_icons: ^0.14.4
+
+flutter:
+  uses-material-design: true
+  assets:
+    - assets/sounds/
+    - assets/backing/
+    - assets/songs/
+    - assets/brand/
+  fonts:
+    - family: Quicksand
+      fonts:
+        - asset: assets/fonts/Quicksand-Regular.ttf
+        - asset: assets/fonts/Quicksand-Bold.ttf
+          weight: 700
