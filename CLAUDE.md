@@ -50,8 +50,12 @@ Emulator: AVD `tinytunes_api35` in `/mnt/storage/projects/android-avd` (create w
   publishing off (goes live on approval). AAB `releases/v1.0.0-1/` (gitignored; local backup). Homi uploaded the
   AAB himself (the Chrome tool can't upload >10 MB). Listing assets labelled as AI-generated where they contain
   Z-Image art. Tested on Oppo CPH2743 (release build): all rooms, karaoke record + chipmunk playback.
-- Ignored Play warning: `android.hardware.screen.landscape` required (from sensorLandscape). For 1.0.1 add
+- Play warning `android.hardware.screen.landscape` required (from sensorLandscape): fixed in 1.0.1 with
   `<uses-feature android:name="android.hardware.screen.landscape" android:required="false"/>`.
 - 1.0.1 polish: on short phones the dim next lyric line pokes below the karaoke lyric panel; mic latency
   (`kMicLatencySeconds`) not yet tuned by ear on a real phone.
 - After approval: AdMob → Tiny Tunes Studio → Add store; switch the tools.homilabs.org card to the Play link.
+- **v1.0.1 (versionCode 2) built 23 Nov 2026**: Grown-ups screen (behind the held gear + sum gate) gets "Rate this
+  app on Google Play" and "More from HomiLabs" (Rainbow Keys, TalkyPals, Bumper Buddies; tagged links in
+  `lib/features/grownups/more_apps.dart`). No in-app review prompt. AAB `releases/v1.0.1-2/`, copy in
+  `play-uploads/2026-11-23-kids/02-tinytunes/`. Not uploaded yet.

@@ -26,6 +26,6 @@ class Services {
 }
 
 const kAppName = 'Tiny Tunes Studio';
-const kAppVersion = '1.0.0';
+const kAppVersion = '1.0.1';
 const kPrivacyUrl = 'https://tools.homilabs.org/privacy#tinytunes';
 const kTermsUrl = 'https://tools.homilabs.org/terms#tinytunes';
