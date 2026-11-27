@@ -50,3 +50,6 @@ First release: nine music rooms, beat maker, play-along songs and karaoke with s
   collected. AdMob: device/app info, IP for ad delivery and fraud prevention (per Google's AdMob disclosure).
 - App access: all functionality available without special access (grown-ups area = parent gate sum).
 - Government app: no. Financial features: none. Health: none. News: no.
+
+## Release notes (v1.1.0, versionCode 3)
+New look! Hand-made 3D toy pictures for every song, karaoke voice, drum and silly-sound pad, plus a new animal-band store picture. Grown-ups can now rate the app and see more HomiLabs apps (behind the parent gate).

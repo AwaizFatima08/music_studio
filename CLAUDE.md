@@ -14,6 +14,9 @@ launcher name "Tiny Tunes"). Started 17 Nov 2026 by Homi. See README.md for feat
   with silly voices. Grown-ups can switch the microphone off (sing-along only).
 - Website: slug `tinytunes` on tools.homilabs.org (privacy#tinytunes, terms#tinytunes). Blocks in `web/`, applied to
   pages fetched from the live site (never overwrite live pages with local copies).
+- Approved homidev originals (`assets/images`, `assets/icons`, ~55 MB) are NOT bundled (Homi, 27 Nov 2026: keep the
+  app lean); the app uses the WebP copies in `assets/art/` from `tools/prep_art.py`. `release-check.sh` therefore
+  reports those two folders as not declared — expected.
 - Graphics: Z-Image on homidev through the asset pipeline (`~/.claude/homidev.md`); ask Homi before every request.
   Approved art is wired in `lib/app/art.dart`; emoji and gradients stand in until then.
 - Sounds and music come only from `tools/make_sounds.py` (synthesized; no samples to license). Songs are

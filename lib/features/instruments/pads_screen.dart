@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+import '../../app/art.dart';
 import '../../app/services.dart';
 import '../../core/music.dart';
 import '../../widgets/fx.dart';
@@ -104,8 +105,11 @@ class _PadsScreenState extends State<PadsScreen> with TickerProviderStateMixin {
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                Flexible(
-                  child: FittedBox(child: Text(pad.emoji, style: const TextStyle(fontSize: 56))),
+                Expanded(
+                  child: Padding(
+                    padding: const EdgeInsets.fromLTRB(10, 10, 10, 0),
+                    child: ArtOrEmoji(art: Art.pad(pad.sound), emoji: pad.emoji),
+                  ),
                 ),
                 FittedBox(child: Text(pad.label, style: kidLabel.copyWith(fontSize: 24))),
               ],

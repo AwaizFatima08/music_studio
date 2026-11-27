@@ -2,6 +2,7 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 
+import '../../app/art.dart';
 import '../../app/services.dart';
 import '../../core/music.dart';
 import '../../core/songs.dart';
@@ -115,6 +116,7 @@ class _PlayAlongScreenState extends State<PlayAlongScreen> with TickerProviderSt
                           opacity: i == _instrument ? 1 : 0.55,
                           child: RoundIcon(
                             emoji: i.emoji,
+                            art: Art.room(i.name),
                             color: i.color,
                             size: i == _instrument ? 54 : 44,
                             label: i.title,

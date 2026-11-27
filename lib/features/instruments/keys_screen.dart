@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+import '../../app/art.dart';
 import '../../app/services.dart';
 import '../../core/music.dart';
 import '../../widgets/fx.dart';
@@ -81,6 +82,7 @@ class _KeysScreenState extends State<KeysScreen> with TickerProviderStateMixin {
                           child: RoundIcon(
                             key: Key('inst-${i.name}'),
                             emoji: i.emoji,
+                            art: Art.room(i.name),
                             color: i.color,
                             size: i == _instrument ? 60 : 50,
                             label: i.title,

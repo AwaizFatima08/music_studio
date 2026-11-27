@@ -203,7 +203,11 @@ class KaraokeScreenState extends State<KaraokeScreen> with TickerProviderStateMi
     switch (phase) {
       case KaraokePhase.ready:
         return _centre([
-          Text(song.emoji, style: const TextStyle(fontSize: 80)),
+          SizedBox(
+            height: 110,
+            width: 110,
+            child: ArtOrEmoji(art: Art.song(song.id), emoji: song.emoji),
+          ),
           const SizedBox(height: 8),
           _bigButton(const Key('sing'), '🎤  Sing!', const Color(0xFFFF5DA2), sing),
           if (_micRefused || !widget.services.settings.karaokeMic)
@@ -246,7 +250,11 @@ class KaraokeScreenState extends State<KaraokeScreen> with TickerProviderStateMi
                                 child: CircularProgressIndicator(color: Colors.white, strokeWidth: 5),
                               )
                             else
-                              Text(v.emoji, style: const TextStyle(fontSize: 44)),
+                              SizedBox(
+                                height: 56,
+                                width: 56,
+                                child: ArtOrEmoji(art: Art.voice(v.name), emoji: v.emoji),
+                              ),
                             const SizedBox(height: 6),
                             FittedBox(child: Text(v.title, style: kidLabel.copyWith(fontSize: 18))),
                           ],
@@ -307,7 +315,12 @@ class KaraokeScreenState extends State<KaraokeScreen> with TickerProviderStateMi
                   scale: 1 + _level * 0.5,
                   child: const Text('🎤', style: TextStyle(fontSize: 48)),
                 ),
-              if (!singing && _voice != null) Text(_voice!.emoji, style: const TextStyle(fontSize: 48)),
+              if (!singing && _voice != null)
+                SizedBox(
+                  height: 56,
+                  width: 56,
+                  child: ArtOrEmoji(art: Art.voice(_voice!.name), emoji: _voice!.emoji),
+                ),
               const SizedBox(width: 20),
               RoundIcon(
                 key: const Key('stop'),

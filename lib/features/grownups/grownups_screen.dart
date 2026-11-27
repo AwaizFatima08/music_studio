@@ -141,9 +141,7 @@ class _GrownupsScreenState extends State<GrownupsScreen> {
                     trailing: const Icon(Icons.open_in_new),
                     onTap: () => _open(playLink(ownPackage)),
                   ),
-                  ListTile(
-                    title: Text('More from HomiLabs', style: Theme.of(context).textTheme.titleMedium),
-                  ),
+                  ListTile(title: Text('More from HomiLabs', style: Theme.of(context).textTheme.titleMedium)),
                   for (final app in moreApps)
                     ListTile(
                       title: Text(app.name),

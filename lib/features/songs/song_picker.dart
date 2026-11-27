@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+import '../../app/art.dart';
 import '../../app/services.dart';
 import '../../core/songs.dart';
 import '../../widgets/studio.dart';
@@ -50,7 +51,7 @@ class SongPickerScreen extends StatelessWidget {
                               child: Column(
                                 children: [
                                   Expanded(
-                                    child: FittedBox(child: Text(s.emoji, style: const TextStyle(fontSize: 60))),
+                                    child: ArtOrEmoji(art: Art.song(s.id), emoji: s.emoji),
                                   ),
                                   Text(
                                     s.title,

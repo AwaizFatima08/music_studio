@@ -2,7 +2,7 @@ name: tiny_tunes
 description: "Tiny Tunes Studio: a music studio for small children (HomiLabs)."
 publish_to: 'none'
 
-version: 1.0.1+2
+version: 1.1.0+3
 
 environment:
   sdk: ^3.11.5
@@ -31,9 +31,6 @@ flutter:
     - assets/songs/
     - assets/brand/
     - assets/art/
-    # Approved homidev originals, declared so release-check.sh can match the register.
-    - assets/images/
-    - assets/icons/
   fonts:
     - family: Quicksand
       fonts:

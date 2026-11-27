@@ -134,15 +134,37 @@ class _BouncyState extends State<Bouncy> with SingleTickerProviderStateMixin {
   }
 }
 
-/// A glossy candy-coloured circle with an emoji, for the top bars.
+/// Approved homidev art when there is some, otherwise the emoji, scaled to fill the space it is given.
+class ArtOrEmoji extends StatelessWidget {
+  const ArtOrEmoji({super.key, required this.art, required this.emoji});
+
+  final String? art;
+  final String emoji;
+
+  @override
+  Widget build(BuildContext context) => art == null
+      ? FittedBox(child: Text(emoji, style: const TextStyle(fontSize: 64)))
+      : Image.asset(art!, fit: BoxFit.contain, filterQuality: FilterQuality.medium);
+}
+
+/// A glossy candy-coloured circle with an emoji (or art), for the top bars.
 class RoundIcon extends StatelessWidget {
-  const RoundIcon({super.key, required this.emoji, required this.color, this.size = 56, this.onTap, this.label});
+  const RoundIcon({
+    super.key,
+    required this.emoji,
+    required this.color,
+    this.size = 56,
+    this.onTap,
+    this.label,
+    this.art,
+  });
 
   final String emoji;
   final Color color;
   final double size;
   final VoidCallback? onTap;
   final String? label;
+  final String? art;
 
   @override
   Widget build(BuildContext context) => Bouncy(
@@ -153,7 +175,9 @@ class RoundIcon extends StatelessWidget {
       height: size,
       alignment: Alignment.center,
       decoration: candy(color, radius: size / 2),
-      child: Text(emoji, style: TextStyle(fontSize: size * 0.5)),
+      child: art == null
+          ? Text(emoji, style: TextStyle(fontSize: size * 0.5))
+          : Padding(padding: EdgeInsets.all(size * 0.12), child: Image.asset(art!)),
     ),
   );
 }

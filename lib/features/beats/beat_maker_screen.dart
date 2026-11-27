@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+import '../../app/art.dart';
 import '../../app/services.dart';
 import '../../core/beats.dart';
 import '../../core/music.dart';
@@ -133,7 +134,10 @@ class _BeatMakerScreenState extends State<BeatMakerScreen> {
                     semanticLabel: beatLanes[l].label,
                     onTap: () => widget.services.sound.play(beatLanes[l].sound),
                     child: Center(
-                      child: FittedBox(child: Text(beatLanes[l].emoji, style: const TextStyle(fontSize: 34))),
+                      child: Padding(
+                        padding: const EdgeInsets.all(2),
+                        child: ArtOrEmoji(art: Art.pad(beatLanes[l].sound), emoji: beatLanes[l].emoji),
+                      ),
                     ),
                   ),
                 ),

@@ -2,15 +2,18 @@
 """Play Store graphics: 512 px icon and the 1024 x 500 feature graphic.
 
     python3 tools/make_store_assets.py   (after tools/prep_art.py)
+
+The feature graphic (v1.1.0) is the approved Z-Image animal band (seed B, 26 Nov 2026) on the
+right with the app name on the left; the previous version used the home background and room icons.
 """
 import os
 
-from PIL import Image, ImageDraw, ImageFilter, ImageFont
+from PIL import Image, ImageDraw, ImageFont
 
 ROOT = os.path.join(os.path.dirname(os.path.abspath(__file__)), '..')
 OUT = os.path.join(ROOT, 'store')
-ART = os.path.join(ROOT, 'assets', 'art')
 FONT = os.path.join(ROOT, 'assets', 'fonts', 'Quicksand-Bold.ttf')
+BAND = os.path.join(ROOT, 'assets', 'images', '20261126-1445-music-studio-image-02_raw.png')
 
 
 def main():
@@ -18,32 +21,17 @@ def main():
     Image.open(os.path.join(ROOT, 'assets', 'icon', 'icon.png')).resize((512, 512), Image.LANCZOS).save(
         os.path.join(OUT, 'icon-512.png'))
 
-    bg = Image.open(os.path.join(ART, 'bg_home.webp')).convert('RGBA')
-    bg = bg.resize((1024, 1024), Image.LANCZOS).crop((0, 300, 1024, 800))
-    shade = Image.new('RGBA', bg.size, (60, 30, 140, 0))
-    grad = Image.linear_gradient('L').rotate(90).resize(bg.size)
-    shade.putalpha(grad.point(lambda v: int(v * 0.75)))
-    bg.alpha_composite(shade)
-
-    def place(name, size, xy):
-        im = Image.open(os.path.join(ART, f'room_{name}.webp')).convert('RGBA').resize((size, size), Image.LANCZOS)
-        glow = im.getchannel('A').filter(ImageFilter.GaussianBlur(10))
-        halo = Image.new('RGBA', im.size, (255, 255, 255, 0))
-        halo.putalpha(glow.point(lambda a: int(a * 0.5)))
-        bg.alpha_composite(halo, xy)
-        bg.alpha_composite(im, xy)
-
-    place('songs', 250, (40, 125))
-    place('guitar', 150, (735, 40))
-    place('drums', 150, (860, 170))
-    place('xylophone', 160, (700, 300))
-    place('karaoke', 130, (890, 330))
+    # Scale the square picture so the band fills the right of the graphic, then widen it to the left by
+    # stretching its plain left edge (sky and floor), so there is no seam behind the title.
+    scaled = Image.open(BAND).convert('RGBA').resize((717, 717), Image.LANCZOS).crop((0, 190, 717, 690))
+    bg = scaled.crop((0, 0, 6, 500)).resize((1024, 500))
+    bg.alpha_composite(scaled, (1024 - 717, 0))
 
     d = ImageDraw.Draw(bg)
-    for text, size, y in (('Tiny Tunes', 96, 130), ('Studio', 96, 230), ('Play · Beat · Sing!', 40, 345)):
+    for text, size, y in (('Tiny Tunes', 72, 130), ('Studio', 72, 210), ('Play · Beat · Sing!', 32, 305)):
         f = ImageFont.truetype(FONT, size)
-        d.text((305, y + 4), text, font=f, fill=(40, 20, 90, 160))
-        d.text((300, y), text, font=f, fill=(255, 255, 255, 255))
+        d.text((44, y + 4), text, font=f, fill=(60, 30, 120, 150))
+        d.text((40, y), text, font=f, fill=(255, 255, 255, 255))
     bg.convert('RGB').save(os.path.join(OUT, 'feature-graphic.png'))
     print('store graphics in', os.path.abspath(OUT))
 
