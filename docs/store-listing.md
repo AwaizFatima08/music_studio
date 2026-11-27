@@ -52,4 +52,4 @@ First release: nine music rooms, beat maker, play-along songs and karaoke with s
 - Government app: no. Financial features: none. Health: none. News: no.
 
 ## Release notes (v1.1.0, versionCode 3)
-New look! Hand-made 3D toy pictures for every song, karaoke voice, drum and silly-sound pad, plus a new animal-band store picture. Grown-ups can now rate the app and see more HomiLabs apps (behind the parent gate).
+New look! Colourful 3D toy pictures for every song, karaoke voice, drum and silly-sound pad, plus a new animal-band store picture. Grown-ups can now rate the app and see more HomiLabs apps (behind the parent gate).

@@ -62,3 +62,9 @@ Emulator: AVD `tinytunes_api35` in `/mnt/storage/projects/android-avd` (create w
   app on Google Play" and "More from HomiLabs" (Rainbow Keys, TalkyPals, Bumper Buddies; tagged links in
   `lib/features/grownups/more_apps.dart`). No in-app review prompt. AAB `releases/v1.0.1-2/`, copy in
   `play-uploads/2026-11-23-kids/02-tinytunes/`. Not uploaded yet.
+- **v1.1.0 (versionCode 3) built 27 Nov 2026**: Z-Image art (approved 26 Nov) for 6 song cards, 5 karaoke voices,
+  9 drum/beat pads and 8 silly pads (`ArtOrEmoji`, emoji fallback), Rate/More apps from 1.0.1, new feature graphic
+  (animal band). AAB `releases/v1.1.0-3/` (58 MB), copy + feature graphic + notes in
+  `/mnt/storage/projects/play-uploads/2026-11-27-tinytunes/`. Supersedes 1.0.1+2 (never uploaded). Not yet tested on
+  a phone (Oppo dropped off adb) and store screenshots not retaken.
+
